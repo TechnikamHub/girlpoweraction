@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Girl Power Action Initiative</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #b226ca;
+            --secondary-color: #4205e2;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f9fafb;
+            --bg-white: #ffffff;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: var(--bg-white);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        main { flex: 1; }
+
+        .footer-brand h3 {
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 0.5rem !important;
+        }
+        .footer-brand > * {
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        .footer-logo {
+            width: 1.5rem;
+            height: 1.5rem;
+            vertical-align: middle;
+            margin-right: 0;
+            border-radius: 50%;
+        }
+
+        .container-custom {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center; /* center page content by default */
+        }
+
+        @media (min-width: 1280px) {
+            .container-custom {
+                padding: 0 3rem;
+            }
+        }
+
+        /* Header */
+        header {
+            background-color: #ffffff;
+            box-shadow: var(--shadow-sm);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            width: 100%;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: flex-start; /* logo on left */
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-left: 0;
+        }
+
+        .logo img {
+            width: 4rem;
+            height: 4rem;
+            border-radius: 50%;
+            object-fit: contain;
+        }
+
+        /* Ensure images within containers are responsive and centered */
+        .container-custom img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* Make buttons easier to tap on mobile */
+        .btn, .btn-donate {
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+        }
+
+        .logo h1 {
+            font-size: 1.125rem;
+            display: none;
+        }
+
+        @media (min-width: 640px) {
+            .logo h1 {
+                display: block;
+            }
+        }
+
+        nav.desktop-nav {
+            display: none;
+            gap: 2rem;
+            align-items: center;
+            margin-left: auto; /* push nav to the right */
+        }
+
+        @media (min-width: 768px) {
+            nav.desktop-nav {
+                display: flex;
+            }
+        }
+
+        nav.desktop-nav a {
+            font-weight: 500;
+            text-decoration: none;
+            color: var(--text-light);
+            transition: color 0.3s;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 0.25rem;
+        }
+
+        nav.desktop-nav a:hover {
+            color: var(--primary-color);
+        }
+
+        nav.desktop-nav a.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+
+        .btn-donate {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-donate:hover {
+            background-color: #9e1fb5;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-dark);
+        }
+
+        @media (max-width: 767px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+
+        /* Footer - professional layout */
+        footer {
+            background-color: #0b1220;
+            color: #eef2ff;
+            padding: 3rem 0 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            align-items: start;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 767px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-quicklinks ul {
+                column-count: 1;
+            }
+        }
+
+        .footer-section h3 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: #ffffff;
+        }
+
+        .footer-section p { color: #cbd5e1; margin-bottom: 1rem; }
+
+        .footer-about p { max-width: 28rem; }
+
+        .footer-section ul { list-style: none; padding: 0; margin: 0; }
+
+        .footer-section li { margin-bottom: 0.5rem; }
+
+        .footer-section a { color: #cbd5e1; text-decoration: none; transition: color 0.18s; }
+
+        .footer-section a:hover { color: var(--primary-color); }
+
+        .footer-about { text-align: center; }
+        .footer-quicklinks { text-align: left; }
+        .footer-quicklinks ul {
+            display: inline-block;
+            padding: 0;
+            margin: 0 auto;
+            text-align: left;
+            column-count: 3;
+            column-gap: 1.5rem;
+        }
+        .footer-quicklinks li { margin-bottom: 0.5rem; }
+
+        .footer-about .social-links { display:flex; gap:0.5rem; margin-top:0.5rem; }
+        .footer-about .social-links a { display:inline-flex; align-items:center; justify-content:center; width:2.5rem; height:2.5rem; background: rgba(255,255,255,0.04); border-radius:8px; color: #fff; }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.06);
+            padding-top: 1.25rem;
+            text-align: center;
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+
+        /* Hero Banner */
+        .hero-banner {
+            height: 20rem;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            color: white;
+        }
+
+        .hero-banner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        .hero-banner .content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .hero-banner h1 {
+            font-size: 2.25rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .hero-banner h1 {
+                font-size: 3rem;
+            }
+        }
+
+        .hero-banner p {
+            font-size: 1.25rem;
+            max-width: 42rem;
+            margin: 0 auto;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 4rem 0;
+        }
+
+        .section-gradient {
+            background: linear-gradient(135deg, #f3e7f5 0%, #e8f0f9 100%);
+        }
+
+        section h2 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            section h2 {
+                font-size: 2.25rem;
+            }
+        }
+
+        .section-divider {
+            width: 5rem;
+            height: 0.25rem;
+            background-color: var(--primary-color);
+            margin: 1.5rem auto;
+        }
+
+        .about-section {
+            display: grid;
+            gap: 3rem;
+        }
+
+        @media (min-width: 768px) {
+            .about-section {
+                grid-template-columns: 1fr 1fr;
+                align-items: center;
+            }
+        }
+
+        .about-section img {
+            border-radius: 0.5rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            width: 100%;
+        }
+
+        .about-section h2 {
+            text-align: left;
+            margin-bottom: 0;
+        }
+
+        .about-section > div:first-child {
+            padding-right: 1rem;
+        }
+
+        .about-section p {
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        .core-values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 767px) {
+            .core-values-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .about-quote {
+            position: absolute;
+            bottom: -1.5rem;
+            left: 0;
+            background-color: var(--bg-white);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            box-shadow: var(--shadow-lg);
+            max-width: 16rem;
+        }
+
+        .about-quote p {
+            color: var(--text-light);
+            font-weight: 500;
+            font-style: italic;
+        }
+
+        .relative {
+            position: relative;
+        }
+
+        /* Card Styles */
+        .card {
+            background-color: var(--bg-white);
+            border-radius: 0.5rem;
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card h2 {
+            text-align: left;
+            margin-bottom: 0;
+            display: flex;
+            align-items: center;
+            font-size: 1.875rem;
+        }
+
+        .card h2 svg {
+            width: 2rem;
+            height: 2rem;
+            margin-right: 0.75rem;
+        }
+
+        .card p {
+            color: var(--text-light);
+            margin-top: 1rem;
+        }
+
+        .mission-vision-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .mission-vision-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .card.border-left {
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .card.border-secondary {
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        /* Impact Stats */
+        .impact-section {
+            text-align: center;
+        }
+
+        .impact-intro {
+            font-size: 1.25rem;
+            color: var(--text-dark);
+            max-width: 48rem;
+            margin: 0 auto 2rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 640px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .stats-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .stat-card {
+            background-color: var(--bg-white);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: var(--shadow-lg);
+            text-align: center;
+        }
+
+        .stat-card svg {
+            width: 1.5rem;
+            height: 1.5rem;
+            margin: 0 auto 1rem;
+            color: var(--primary-color);
+        }
+
+        .stat-card h4 {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card p {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card .description {
+            font-size: 0.875rem;
+            color: var(--text-light);
+        }
+
+        /* Utility Classes */
+        .text-center {
+            text-align: center;
+        }
+
+        .mb-4 {
+            margin-bottom: 1rem;
+        }
+
+        .mb-6 {
+            margin-bottom: 1.5rem;
+        }
+
+        .mb-8 {
+            margin-bottom: 2rem;
+        }
+
+        .mb-12 {
+            margin-bottom: 3rem;
+        }
+
+        .mt-8 {
+            margin-top: 2rem;
+        }
+
+        .max-w-3xl {
+            max-width: 48rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .space-y-6 > * + * {
+            margin-top: 1.5rem;
+        }
+
+        /* Hovering Effects */
+        .card {
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(178, 38, 202, 0.15) !important;
+        }
+
+        .stat-card {
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 35px rgba(178, 38, 202, 0.2) !important;
+        }
+
+        nav.desktop-nav a {
+            transition: all 0.3s ease;
+        }
+
+        nav.desktop-nav a:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-donate {
+            transition: all 0.3s ease;
+        }
+
+        .btn-donate:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(178, 38, 202, 0.3);
+        }
+
+        .footer-section a {
+            transition: all 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            transform: translateX(5px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container-custom">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <img src="images/gpai.png" alt="Girl Power Action Initiative Logo">
+                    <h1>GPAI</h1>
+                </a>
+                <nav class="desktop-nav">
+                    <a href="index.html">Home</a>
+                    <a href="about.html" class="active">About Us</a>
+                    <a href="programs.html">Programs</a>
+                    <a href="impact.html">Impact</a>
+                    <a href="gallery.html">Gallery</a>
+                    <a href="team.html">Team</a>
+                    <a href="contact.html">Contact</a>
+                </nav>
+                <a href="#donate" class="btn-donate" style="margin-left: 2rem; text-decoration: none;">Donate Now</a>
+                <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Banner -->
+        <div class="hero-banner" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/img-2.jpg');">
+            <div class="content">
+                <h1>About Us</h1>
+                <p>Learn more about our mission, vision, and the impact we're making in the lives of refugee girls.</p>
+            </div>
+        </div>
+
+        <!-- Our Story Section -->
+        <section class="bg-white">
+            <div class="container-custom">
+                <div class="about-section">
+                    <div>
+                        <h2>Our Story</h2>
+                        <div class="section-divider" style="margin-left: 0;"></div>
+                        <p>Girl Power Action Initiative was founded with a simple yet powerful mission: to restore dignity and happiness to refugee girls in Kalobeyei and Kakuma camps. Our founders witnessed firsthand the challenges faced by these young women, particularly concerning menstrual hygiene and reproductive health.</p>
+                        <p>What began as a small initiative to provide reusable sanitary pads quickly evolved into a comprehensive program addressing sexual and reproductive health education, menstruation hygiene management, and providing mentorship opportunities.</p>
+                        <p>Today, we continue to grow our impact, reaching more girls each year and expanding our programs to address their holistic needs. We believe that every girl deserves access to education, health resources, and the opportunity to reach her full potential.</p>
+                    </div>
+                    <div class="relative pb-8">
+                        <img src="images/img-2.jpg" alt="Girls in a classroom">
+                        <div class="about-quote">
+                            <p>"Every girl has the right to education, health, and dignity."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vision and Mission Section -->
+        <section class="section-gradient">
+            <div class="container-custom">
+                <div class="mission-vision-grid">
+                    <div class="card border-left">
+                        <h2>
+                            <svg fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                            </svg>
+                            Our Mission
+                        </h2>
+                        <div class="section-divider" style="margin-left: 0; width: 5rem;"></div>
+                        <p>Girl Power Action Initiative is committed to promoting Sexual Reproductive Health Education (SRHE) and preventing Sexual and Gender-Based Violence (SGBV). Through educational training, mentorship, and livelihood programs, we empower women and girls to lead healthier, safer, and more empowered lives.</p>
+                    </div>
+
+                    <div class="card border-secondary">
+                        <h2>
+                            <svg fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                            Our Vision
+                        </h2>
+                        <div class="section-divider" style="margin-left: 0; width: 5rem; background-color: var(--secondary-color);"></div>
+                        <p>A future where every woman and girl in Africa lives and thrives with dignity, safety, and self-reliance.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Impact Section -->
+        <section class="bg-white">
+            <div class="container-custom impact-section">
+                <h2>Our Impact</h2>
+                <div class="section-divider"></div>
+                <p class="impact-intro">In partnership with UNHCR, Cohere, and Amahoro Coalition, we have achieved: 4,218 girls trained on SRHR and GBV; 4,600 pads distributed to adolescent girls and reproductive women; 50+ women trained on tailoring and reusable pad production.</p>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <svg fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" />
+                        </svg>
+                        <h4>4,218</h4>
+                        <p>Girls Trained</p>
+                        <p class="description">Sensitized on SRHR and GBV</p>
+                    </div>
+                    <div class="stat-card">
+                        <svg fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                        </svg>
+                        <h4>2,000</h4>
+                        <p>Pads Distributed</p>
+                        <p class="description">To adolescent girls and reproductive women</p>
+                    </div>
+                    <div class="stat-card">
+                        <svg fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.3A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
+                        </svg>
+                        <h4>50+</h4>
+                        <p>Women Trained</p>
+                        <p class="description">On tailoring and reusable pad production</p>
+                    </div>
+                    <div class="stat-card">
+                        <svg fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" />
+                        </svg>
+                        <h4>4,600</h4>
+                        <p>Total Beneficiaries</p>
+                        <p class="description">Adolescent girls and reproductive women</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Values Section -->
+        <section class="section-gradient">
+            <div class="container-custom">
+                <h2>Our Core Values</h2>
+                <div class="section-divider"></div>
+                
+                <div class="core-values-grid">
+                    <div class="card">
+                        <h3 style="font-weight: 600; margin-bottom: 1rem;">Empowerment</h3>
+                        <p>We believe in empowering girls with knowledge, skills, and confidence to take control of their lives and make informed decisions.</p>
+                    </div>
+                    <div class="card">
+                        <h3 style="font-weight: 600; margin-bottom: 1rem;">Inclusivity</h3>
+                        <p>We embrace diversity and ensure our programs are accessible to all girls, regardless of their background or circumstances.</p>
+                    </div>
+                    <div class="card">
+                        <h3 style="font-weight: 600; margin-bottom: 1rem;">Dignity</h3>
+                        <p>We respect the dignity and autonomy of every girl we work with, treating them with compassion and respect at all times.</p>
+                    </div>
+                    <div class="card">
+                        <h3 style="font-weight: 600; margin-bottom: 1rem;">Sustainability</h3>
+                        <p>We focus on long-term solutions that create lasting change in the lives of girls and their communities.</p>
+                    </div>
+                    <div class="card">
+                        <h3 style="font-weight: 600; margin-bottom: 1rem;">Accountability</h3>
+                        <p>We are committed to transparency and accountability in all our operations and the use of resources.</p>
+                    </div>
+                    <div class="card">
+                        <h3 style="font-weight: 600; margin-bottom: 1rem;">Collaboration</h3>
+                        <p>We work closely with partners, stakeholders, and communities to maximize our impact and reach.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container-custom">
+            <div class="footer-grid">
+
+                <div class="footer-section footer-about">
+                    <div class="footer-brand">
+                        <img src="images/gpai.png" alt="GPAI logo" class="footer-logo">
+                        <h3>Girl Power Action Initiative</h3>
+                    </div>
+                    <p>Empowering refugee girls in Kaloboyei and Kakuma camps through education, mentorship, and support for a better future.</p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/company/girl-power-initiative/posts/?feedView=all" title="LinkedIn">
+                            <svg fill="currentColor" viewBox="0 0 24 24"><path d="M4.98 3c0 1.657-1.343 3-3 3S-1.02 4.657-1.02 3 0.323 0 1.98 0 4.98 1.343 4.98 3zM0 24h4V8H0v16zm7-16h4v2.351h.056c.556-1.054 1.914-2.166 3.942-2.166 4.214 0 5 2.773 5 6.379V24h-4v-8.125c0-1.939-.035-4.437-2.702-4.437-2.708 0-3.123 2.116-3.123 4.299V24h-4V8z"/></svg>
+                        </a>
+                        <a href="https://www.instagram.com/girl_power_action_initiative" target="_blank" rel="noopener noreferrer" title="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://x.com/girlpowerteam33" target="_blank" rel="noopener noreferrer" title="X (Twitter)">
+                            <i class="fab fa-x-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-section footer-quicklinks">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="programs.html">Programs</a></li>
+                        <li><a href="impact.html">Impact</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="team.html">Team</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="index.html#donate">Donate</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section footer-contact">
+                    <h3>Contact Info</h3>
+                    <div style="display: grid; gap: 1.5rem;">
+                        <div style="display: flex; gap: 1rem; align-items: flex-start;">
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width: 1.5rem; height: 1.5rem; flex-shrink: 0;">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            <span>Kakuma 3 zone 3 block 9, Kakuma refugee Camp, Kenya</span>
+                        </div>
+                        <div style="display: flex; gap: 1rem; align-items: flex-start;">
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width: 1.5rem; height: 1.5rem; flex-shrink: 0;">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                            <span>info@girlpoweractioninitiative.org</span>
+                        </div>
+                        <div style="display: flex; gap: 1rem; align-items: flex-start;">
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width: 1.5rem; height: 1.5rem; flex-shrink: 0;">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                            </svg>
+                            <span>+254740821169</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Girl Power Action Initiative. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Dark mode functionality
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            const toggle = document.getElementById('darkModeToggle');
+            html.classList.toggle('dark-mode');
+            const isDarkMode = html.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDarkMode);
+            toggle.textContent = isDarkMode ? '☀️' : '🌙';
+        }
+
+        // Load dark mode preference on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const isDarkMode = localStorage.getItem('darkMode') === 'true';
+            const html = document.documentElement;
+            const toggle = document.getElementById('darkModeToggle');
+            if (isDarkMode) {
+                html.classList.add('dark-mode');
+                toggle.textContent = '☀️';
+            }
+        });
+    </script>
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/254740821169" class="floating-whatsapp" target="_blank" rel="noopener noreferrer" title="Chat with us on WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.272-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004c-1.052 0-2.069.338-2.955.967l-.21.13-2.143-.561.569 2.08-.135.214a4.888 4.888 0 0 0-.9 2.605c0 2.364 1.927 4.29 4.291 4.29h.004c1.052 0 2.069-.337 2.955-.967l.21-.129 2.143.561-.569-2.081.135-.213a4.884 4.884 0 0 0 .9-2.605c0-2.364-1.927-4.291-4.291-4.291M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0z"/>
+        </svg>
+    </a>
+    <style>
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 3.5rem;
+            height: 3.5rem;
+            background-color: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 999;
+            transition: all 0.3s ease;
+        }
+        .floating-whatsapp:hover {
+            background-color: #1EA854;
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+        @media (max-width: 768px) {
+            .floating-whatsapp {
+                width: 3rem;
+                height: 3rem;
+                bottom: 1.5rem;
+                right: 1.5rem;
+            }
+        }
+    </style>
+    <!-- Coming soon toast + handler -->
+    <style>
+        .coming-soon-toast{position:fixed;bottom:2.5rem;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.85);color:#fff;padding:0.6rem 1rem;border-radius:0.5rem;z-index:10000;display:none;font-weight:600}
+        .coming-soon-toast.show{display:block;animation:fadeup .28s ease}
+        @keyframes fadeup{from{opacity:0;transform:translate(-50%,6px)}to{opacity:1;transform:translate(-50%,0)}}
+    </style>
+    <script>
+        (function(){
+            function showToast(){
+                var t=document.getElementById('comingSoonToast');
+                if(!t){t=document.createElement('div');t.id='comingSoonToast';t.className='coming-soon-toast';t.textContent='Coming soon';document.body.appendChild(t)}
+                t.classList.add('show');clearTimeout(t._timeout);t._timeout=setTimeout(function(){t.classList.remove('show')},1800);
+            }
+            function handler(e){e.preventDefault();showToast();}
+            document.addEventListener('DOMContentLoaded',function(){
+                var sel=['a[href="#donate"]','a[href="index.html#donate"]','.btn-donate','button.btn-cta','a.btn-outline[href$="#donate"]'];
+                document.querySelectorAll(sel.join(',')).forEach(function(el){el.addEventListener('click',handler)});
+            });
+        })();
+    </script>
+</body>
+</html>

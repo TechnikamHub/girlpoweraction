@@ -1,0 +1,1458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Girl Power Action Initiative - Empowering Refugee Girls</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #b226ca;
+            --secondary-color: #4205e2;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f9fafb;
+            --bg-white: #ffffff;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: var(--bg-white);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        main { flex: 1; }
+
+        .footer-brand h3 {
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 0.5rem !important;
+        }
+        .footer-brand > * {
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        .footer-logo {
+            width: 1.5rem;
+            height: 1.5rem;
+            vertical-align: middle;
+            margin-right: 0;
+            border-radius: 50%;
+        }
+
+        .container-custom {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center; /* center page content by default */
+        }
+
+        @media (min-width: 1280px) {
+            .container-custom {
+                padding: 0 3rem;
+            }
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: #ffffff;
+            box-shadow: var(--shadow-sm);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            width: 100%;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: flex-start; /* logo on left */
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-left: 0; /* ensure left alignment inside container */
+        }
+
+        .logo img {
+            width: 4rem;
+            height: 4rem;
+            border-radius: 50%;
+            object-fit: contain;
+        }
+
+        .logo h1 {
+            font-size: 1.125rem;
+            display: none;
+        }
+
+        @media (min-width: 640px) {
+            .logo h1 {
+                display: block;
+            }
+        }
+
+        nav.desktop-nav {
+            display: none;
+            gap: 2rem;
+            align-items: center;
+            margin-left: auto; /* push nav to the right */
+        }
+
+        @media (min-width: 768px) {
+            nav.desktop-nav {
+                display: flex;
+            }
+        }
+
+        nav.desktop-nav a {
+            font-weight: 500;
+            text-decoration: none;
+            color: var(--text-light);
+            transition: color 0.3s;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 0.25rem;
+        }
+
+        nav.desktop-nav a:hover {
+            color: var(--primary-color);
+        }
+
+        nav.desktop-nav a.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+
+        .btn-donate {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-donate:hover {
+            background-color: #9e1fb5;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-dark);
+        }
+
+        @media (max-width: 767px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+
+        /* Footer - professional layout */
+        footer {
+            background-color: #0b1220;
+            color: #eef2ff;
+            padding: 3rem 0 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            align-items: start;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 767px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-quicklinks ul {
+                column-count: 1;
+            }
+        }
+
+        .footer-section h3 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: #ffffff;
+        }
+
+        .footer-section p { color: #cbd5e1; margin-bottom: 1rem; }
+
+        .footer-about p { max-width: 28rem; }
+
+        .footer-section ul { list-style: none; padding: 0; margin: 0; }
+
+        .footer-section li { margin-bottom: 0.5rem; }
+
+        .footer-section a { color: #cbd5e1; text-decoration: none; transition: color 0.18s; }
+
+        .footer-section a:hover { color: var(--primary-color); }
+
+        .footer-about { text-align: center; }
+        .footer-quicklinks { text-align: left; }
+        .footer-quicklinks ul {
+            display: inline-block;
+            padding: 0;
+            margin: 0 auto;
+            text-align: left;
+            column-count: 3;
+            column-gap: 1.5rem;
+        }
+        .footer-quicklinks li { margin-bottom: 0.5rem; }
+
+        .footer-about .social-links { display:flex; gap:0.5rem; margin-top:0.5rem; }
+        .footer-about .social-links a { display:inline-flex; align-items:center; justify-content:center; width:2.5rem; height:2.5rem; background: rgba(255,255,255,0.04); border-radius:8px; color: #fff; }
+
+        .footer-contact span { display:block; color: #cbd5e1; margin-bottom: 0.6rem; }
+
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 1.25rem; text-align: center; color: #9ca3af; font-size: 0.9rem; }
+
+        /* Hero Slider */
+        .hero-slider {
+            position: relative;
+            overflow: hidden;
+            height: 70vh;
+        }
+
+        @media (min-width: 768px) {
+            .hero-slider {
+                height: 80vh;
+            }
+        }
+
+        .slider-slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slider-slide.active {
+            opacity: 1;
+            z-index: 10;
+        }
+
+        .slider-content {
+            text-align: center;
+            color: white;
+            padding: 1rem;
+        }
+
+        .slider-content h1 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .slider-content h1 {
+                font-size: 3rem;
+            }
+        }
+
+        .slider-content p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        .slider-btn {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .slider-btn:hover {
+            background-color: #9e1fb5;
+        }
+
+        .slider-controls {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 20;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .slider-dot {
+            width: 0.75rem;
+            height: 0.75rem;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .slider-dot.active {
+            background-color: white;
+        }
+
+        .slider-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.3);
+            color: white;
+            border: none;
+            padding: 0.5rem;
+            cursor: pointer;
+            border-radius: 50%;
+            z-index: 20;
+            transition: background-color 0.3s;
+        }
+
+        .slider-arrow:hover {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .slider-arrow.prev {
+            left: 1rem;
+        }
+
+        .slider-arrow.next {
+            right: 1rem;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 4rem 0;
+        }
+
+        .section-gradient {
+            background: linear-gradient(135deg, #f3e7f5 0%, #e8f0f9 100%);
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #b226ca 0%, #4205e2 100%);
+            color: white;
+        }
+
+        section h2 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            section h2 {
+                font-size: 2.25rem;
+            }
+        }
+
+        .section-divider {
+            width: 5rem;
+            height: 0.25rem;
+            background-color: var(--primary-color);
+            margin: 1.5rem auto;
+        }
+
+        /* Mission & Vision Cards */
+        .mission-grid {
+            display: grid;
+            gap: 3rem;
+        }
+
+        @media (min-width: 768px) {
+            .mission-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 3rem;
+            }
+        }
+
+        .card {
+            background-color: var(--bg-white);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .card h3 svg {
+            width: 1.5rem;
+            height: 1.5rem;
+            margin-right: 0.75rem;
+        }
+
+        .card p {
+            color: var(--text-light);
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 640px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .stats-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .stat-card {
+            background-color: var(--bg-white);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: var(--shadow-lg);
+            text-align: center;
+        }
+
+        .stat-card svg {
+            width: 1.5rem;
+            height: 1.5rem;
+            margin: 0 auto 1rem;
+            color: var(--primary-color);
+        }
+
+        .stat-card h4 {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card p {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card .description {
+            font-size: 0.875rem;
+            color: var(--text-light);
+        }
+
+        /* Programs Grid - responsive: 1 column mobile, 2 tablet, 3 desktop */
+        .programs-grid {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: 1fr;
+        }
+
+        @media (min-width: 640px) {
+            .programs-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .programs-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .program-card {
+            background-color: var(--bg-white);
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            transition: box-shadow 0.3s;
+        }
+
+        .program-card:hover {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .program-card img {
+            width: 100%;
+            height: 12rem;
+            object-fit: cover;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .program-card .content {
+            padding: 1.5rem;
+        }
+
+        /* Keep card content left-aligned for readability */
+        .program-card .content {
+            text-align: left;
+        }
+
+        /* Ensure images within containers are responsive and centered */
+        .container-custom img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .program-card h3 {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 0.75rem;
+        }
+
+        .program-card p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .btn-outline {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid var(--secondary-color);
+            background-color: transparent;
+            color: var(--secondary-color);
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        /* Testimonials */
+        .testimonials-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .testimonials-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .testimonial-card {
+            background-color: var(--bg-white);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .testimonial-card blockquote {
+            font-size: 1rem;
+            color: var(--text-light);
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-card .author {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .testimonial-card .role {
+            font-size: 0.875rem;
+            color: var(--text-light);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            color: white;
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            max-width: 42rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        @media (min-width: 640px) {
+            .cta-buttons {
+                flex-direction: row;
+            }
+        }
+
+        .btn-cta {
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 0.5rem;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary-cta {
+            background-color: var(--primary-color);
+        }
+
+        .btn-primary-cta:hover {
+            background-color: #9e1fb5;
+        }
+
+        .btn-secondary-cta {
+            background-color: var(--secondary-color);
+        }
+
+        .btn-secondary-cta:hover {
+            background-color: #3504c7;
+        }
+
+        /* Utility Classes */
+        .text-center {
+            text-align: center;
+        }
+
+        .mb-4 {
+            margin-bottom: 1rem;
+        }
+
+        .mb-6 {
+            margin-bottom: 1.5rem;
+        }
+
+        .mb-8 {
+            margin-bottom: 2rem;
+        }
+
+        .mb-12 {
+            margin-bottom: 3rem;
+        }
+
+        .mt-8 {
+            margin-top: 2rem;
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .flex-col {
+            flex-direction: column;
+        }
+
+        .items-center {
+            align-items: center;
+        }
+
+        .gap-2 {
+            gap: 0.5rem;
+        }
+
+        .gap-4 {
+            gap: 1rem;
+        }
+
+        .gap-6 {
+            gap: 1.5rem;
+        }
+
+        .gap-8 {
+            gap: 2rem;
+        }
+
+        .gap-12 {
+            gap: 3rem;
+        }
+
+        .space-y-6 > * + * {
+            margin-top: 1.5rem;
+        }
+
+        .space-y-4 > * + * {
+            margin-top: 1rem;
+        }
+
+        .max-w-2xl {
+            max-width: 42rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .max-w-3xl {
+            max-width: 48rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .rounded-lg {
+            border-radius: 0.5rem;
+        }
+
+        /* About Page Styles */
+        .hero-banner {
+            height: 20rem;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            color: white;
+        }
+
+        .hero-banner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        .hero-banner .content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .hero-banner h1 {
+            font-size: 2.25rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .hero-banner h1 {
+                font-size: 3rem;
+            }
+        }
+
+        .hero-banner p {
+            font-size: 1.25rem;
+            max-width: 42rem;
+            margin: 0 auto;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            max-width: 42rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(178, 38, 202, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 8rem;
+        }
+
+        .btn-submit {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 1rem;
+        }
+
+        .btn-submit:hover {
+            background-color: #9e1fb5;
+        }
+
+        /* Contact Info */
+        .contact-info {
+            display: grid;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .info-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .info-item-icon {
+            background-color: rgba(178, 38, 202, 0.1);
+            padding: 0.75rem;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .info-item-icon svg {
+            width: 1.5rem;
+            height: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .info-item h3 {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .info-item p {
+            color: var(--text-light);
+        }
+
+        /* About Page Sections */
+        .about-section {
+            display: grid;
+            gap: 3rem;
+        }
+
+        @media (min-width: 768px) {
+            .about-section {
+                grid-template-columns: 1fr 1fr;
+                align-items: center;
+            }
+        }
+
+        .about-section img {
+            border-radius: 0.5rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            width: 100%;
+        }
+
+        .about-quote {
+            position: absolute;
+            bottom: -1.5rem;
+            left: 0;
+            background-color: var(--bg-white);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            box-shadow: var(--shadow-lg);
+            max-width: 16rem;
+        }
+
+        .about-quote p {
+            color: var(--text-light);
+            font-weight: 500;
+            font-style: italic;
+        }
+
+        .relative {
+            position: relative;
+        }
+
+        .pb-8 {
+            padding-bottom: 2rem;
+        }
+
+        /* Programs Page */
+        .programs-list {
+            display: grid;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .program-detail-card {
+            background-color: var(--bg-white);
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .program-detail-card img {
+            width: 100%;
+            height: 15rem;
+            object-fit: cover;
+        }
+
+        .program-detail-content {
+            padding: 2rem;
+        }
+
+        .program-detail-content h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .program-detail-content h3 svg {
+            width: 2rem;
+            height: 2rem;
+        }
+
+        .program-detail-content p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .program-details-list {
+            list-style: none;
+            columns: 2;
+            gap: 2rem;
+        }
+
+        @media (max-width: 767px) {
+            .program-details-list {
+                columns: 1;
+            }
+        }
+
+        .program-details-list li {
+            margin-bottom: 1rem;
+            padding-left: 0;
+            position: relative;
+        }
+
+        /* Hovering Effects */
+        .program-card {
+            transition: all 0.3s ease;
+        }
+
+        .program-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15) !important;
+        }
+
+        .stat-card {
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 35px rgba(178, 38, 202, 0.2) !important;
+        }
+
+        .testimonial-card {
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2) !important;
+        }
+
+        .card {
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(178, 38, 202, 0.15) !important;
+        }
+
+        nav.desktop-nav a {
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav.desktop-nav a:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-donate,
+        .btn-outline,
+        .btn-submit,
+        .btn-cta {
+            transition: all 0.3s ease;
+        }
+
+        .btn-donate:hover,
+        .btn-submit:hover,
+        .btn-primary-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(178, 38, 202, 0.3);
+        }
+
+        .btn-outline:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(66, 5, 226, 0.3);
+        }
+
+        .btn-secondary-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(66, 5, 226, 0.3);
+        }
+
+        .footer-section a {
+            transition: all 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            transform: translateX(5px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container-custom">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <img src="images/gpai.png" alt="Girl Power Action Initiative Logo">
+                    <h1>GPAI</h1>
+                </a>
+                <nav class="desktop-nav">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About Us</a>
+                    <a href="programs.html">Programs</a>
+                    <a href="impact.html">Impact</a>
+                    <a href="gallery.html">Gallery</a>
+                    <a href="team.html">Team</a>
+                    <a href="contact.html">Contact</a>
+                </nav>
+                <a href="#donate" class="btn-donate" style="margin-left: 2rem; text-decoration: none;">Donate Now</a>
+                <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+            </div>
+        </div>
+    </header>
+    <main>
+        <!-- Hero Slider -->
+        <section class="hero-slider">
+            <div class="slider-slide active" style="background-image: url('images/img-1.jpg');">
+                <div class="slider-content">
+                    <h1>Empowering Refugee Girls Through Education</h1>
+                    <p>Providing sexual reproductive health education, mentorship, and support to create a brighter future for refugee girls in Kalobeyei and Kakuma camps.</p>
+                    <a href="programs.html" class="slider-btn">Our Programs</a>
+                </div>
+            </div>
+            <div class="slider-slide" style="background-image: url('images/img-2.jpg');">
+                <div class="slider-content">
+                    <h1>Menstrual Hygiene Management</h1>
+                    <p>Ensuring girls can attend school and participate fully in life with dignity through education and reusable sanitary products.</p>
+                    <a href="impact.html" class="slider-btn">Learn More</a>
+                </div>
+            </div>
+            <div class="slider-slide" style="background-image: url('images/img-3.jpg');">
+                <div class="slider-content">
+                    <h1>Mentorship & Support</h1>
+                    <p>Guiding young women through challenges with role models who help them build confidence and achieve their dreams.</p>
+                    <a href="gallery.html" class="slider-btn">Get Involved</a>
+                </div>
+            </div>
+            <div class="slider-slide" style="background-image: url('images/img-4.jpg');">
+                <div class="slider-content">
+                    <h1>Community Empowerment</h1>
+                    <p>Building stronger communities through education, skills training, and collective action for lasting change.</p>
+                    <a href="programs.html" class="slider-btn">Join Us</a>
+                </div>
+            </div>
+            <div class="slider-slide" style="background-image: url('images/img-5.jpg');">
+                <div class="slider-content">
+                    <h1>Skills for the Future</h1>
+                    <p>Equipping girls with digital skills, tailoring, and entrepreneurship training to create sustainable livelihoods.</p>
+                    <a href="programs.html" class="slider-btn">Explore Skills</a>
+                </div>
+            </div>
+            <button class="slider-arrow prev" onclick="prevSlide()">&#10094;</button>
+            <button class="slider-arrow next" onclick="nextSlide()">&#10095;</button>
+            <div class="slider-controls">
+                <button class="slider-dot active" onclick="goToSlide(0)"></button>
+                <button class="slider-dot" onclick="goToSlide(1)"></button>
+                <button class="slider-dot" onclick="goToSlide(2)"></button>
+                <button class="slider-dot" onclick="goToSlide(3)"></button>
+                <button class="slider-dot" onclick="goToSlide(4)"></button>
+            </div>
+        </section>
+
+        <section class="section-gradient">
+            <div class="container-custom">
+                <h2>Our Mission & Vision</h2>
+                <div class="section-divider"></div>
+                <div class="mission-grid gap-12">
+                    <div class="card" style="border-left: 4px solid var(--primary-color);">
+                        <h3>
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                            </svg>
+                            Our Mission
+                        </h3>
+                        <p>Girl Power Action Initiative is committed to promoting Sexual Reproductive Health Education (SRHE) and preventing Sexual and Gender-Based Violence (SGBV). Through educational training, mentorship, and livelihood programs, we empower women and girls to lead healthier, safer, and more empowered lives.</p>
+                    </div>
+                    <div class="card" style="border-left: 4px solid var(--secondary-color);">
+                        <h3>
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                            Our Vision
+                        </h3>
+                        <p>A future where every woman and girl in Africa lives and thrives with dignity, safety, and self-reliance.</p>
+                    </div>
+                </div>
+                <div class="text-center mt-8">
+                    <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+                        <a href="about.html" class="btn-donate">Learn More About Us</a>
+                        <a href="gallery.html" class="btn-donate">View Our Gallery</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="section-gradient">
+            <div class="container-custom">
+                <h2>Our Impact</h2>
+                <div class="section-divider"></div>
+                <p class="text-center max-w-3xl mb-12" style="font-size: 1.25rem; color: var(--text-dark);">
+                    In partnership with UNHCR, Cohere, and Amahoro Coalition, we have achieved: 4,218 girls trained on SRHR and GBV; 4,600 pads distributed to adolescent girls and reproductive women; 50+ women trained on tailoring and reusable pad production.
+                </p>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <svg fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" />
+                        </svg>
+                        <h4>4,218</h4>
+                        <p>Girls Trained</p>
+                        <p class="description">Sensitized on SRHR and GBV</p>
+                    </div>
+                    <div class="stat-card">
+                        <svg fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                        </svg>
+                        <h4>2000</h4>
+                        <p>Pads Distributed</p>
+                        <p class="description">To adolescent girls and reproductive women</p>
+                    </div>
+                    <div class="stat-card">
+                        <svg fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.3A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
+                        </svg>
+                        <h4>50+</h4>
+                        <p>Women Trained</p>
+                        <p class="description">On tailoring and reusable pad production</p>
+                    </div>
+                    <div class="stat-card">
+                        <svg fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" />
+                        </svg>
+                        <h4>4,600</h4>
+                        <p>Total Beneficiaries</p>
+                        <p class="description">Adolescent girls and reproductive women</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Programs Section -->
+        <section id="programs" class="bg-white">
+            <div class="container-custom">
+                <h2>Our Programs</h2>
+                <div class="section-divider"></div>
+                <div class="programs-grid">
+                    <div class="program-card">
+                        <img src="images/img-10.jpg" alt="Health Education">
+                        <div class="content">
+                            <h3>Sexual Reproductive Health Education</h3>
+                            <p>Comprehensive education on reproductive health, body changes, and healthy choices to empower girls with knowledge.</p>
+                            <a href="programs.html" class="btn-outline">Learn More</a>
+                        </div>
+                    </div>
+                    <div class="program-card">
+                        <img src="images/img-11.jpeg" alt="Menstrual Hygiene">
+                        <div class="content">
+                            <h3>Menstruation Hygiene Management</h3>
+                            <p>Educational programs and provision of reusable sanitary products to ensure girls manage menstruation with dignity.</p>
+                            <a href="programs.html" class="btn-outline">Learn More</a>
+                        </div>
+                    </div>
+                    <div class="program-card">
+                        <img src="images/img-14.jpeg" alt="Mentorship">
+                        <div class="content">
+                            <h3>Mentorship Program</h3>
+                            <p>Guidance and support from role models who help girls navigate challenges and build confidence in their abilities.</p>
+                            <a href="programs.html" class="btn-outline">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="section-gradient">
+            <div class="container-custom">
+                <h2>Testimonials</h2>
+                <div class="section-divider"></div>
+                <p class="text-center max-w-3xl mb-12" style="font-size: 1.25rem; color: var(--text-dark);">
+                    Hear from the girls whose lives have been transformed through our programs.
+                </p>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <blockquote>"The menstrual hygiene program changed my life. I no longer miss school during my period, and I feel more confident every day."</blockquote>
+                        <div class="author">Amina</div>
+                        <div class="role">Program Participant</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <blockquote>"Girl Power Initiative taught me about my body and my rights. I now feel empowered to make informed decisions about my health and future."</blockquote>
+                        <div class="author">Sarah</div>
+                        <div class="role">Mentorship Program</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <blockquote>"The reusable sanitary pads provided by GPI have made such a difference in my life. I'm grateful for their support."</blockquote>
+                        <div class="author">Fatima</div>
+                        <div class="role">Program Beneficiary</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section id="donate" class="hero-gradient">
+            <div class="container-custom cta-section">
+                <h2>Join Our Mission</h2>
+                <p>Your support helps us continue our vital work empowering refugee girls to build better futures.</p>
+                <div class="cta-buttons">
+                    <button class="btn-cta btn-primary-cta">Donate Now</button>
+                    <button class="btn-cta btn-secondary-cta">Become a Volunteer</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container-custom">
+            <div class="footer-grid">
+
+                <div class="footer-section footer-about">
+                    <div class="footer-brand">
+                        <img src="images/gpai.png" alt="GPAI logo" class="footer-logo">
+                        <h3>Girl Power Action Initiative</h3>
+                    </div>
+                    <p>Empowering refugee girls in Kaloboyei and Kakuma camps through education, mentorship, and support for a better future.</p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/company/girl-power-initiative/posts/?feedView=all" title="LinkedIn">
+                            <svg fill="currentColor" viewBox="0 0 24 24"><path d="M4.98 3c0 1.657-1.343 3-3 3S-1.02 4.657-1.02 3 0.323 0 1.98 0 4.98 1.343 4.98 3zM0 24h4V8H0v16zm7-16h4v2.351h.056c.556-1.054 1.914-2.166 3.942-2.166 4.214 0 5 2.773 5 6.379V24h-4v-8.125c0-1.939-.035-4.437-2.702-4.437-2.708 0-3.123 2.116-3.123 4.299V24h-4V8z"/></svg>
+                        </a>
+                        <a href="https://www.instagram.com/girl_power_action_initiative" target="_blank" rel="noopener noreferrer" title="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://x.com/girlpowerteam33" target="_blank" rel="noopener noreferrer" title="X (Twitter)">
+                            <i class="fab fa-x-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-section footer-quicklinks">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="programs.html">Programs</a></li>
+                        <li><a href="impact.html">Impact</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="team.html">Team</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="index.html#donate">Donate</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section footer-contact">
+                    <h3>Contact Info</h3>
+                    <div style="display: grid; gap: 1.5rem;">
+                        <div style="display: flex; gap: 1rem; align-items: flex-start;">
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width: 1.5rem; height: 1.5rem; flex-shrink: 0;">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            <span>Kakuma 3 zone 3 block 9, Kakuma refugee Camp, Kenya</span>
+                        </div>
+                        <div style="display: flex; gap: 1rem; align-items: flex-start;">
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width: 1.5rem; height: 1.5rem; flex-shrink: 0;">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                            <span>info@girlpoweractioninitiative.org</span>
+                        </div>
+                        <div style="display: flex; gap: 1rem; align-items: flex-start;">
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width: 1.5rem; height: 1.5rem; flex-shrink: 0;">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                            </svg>
+                            <span>+254740821169</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Girl Power Action Initiative. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slider-slide');
+        const totalSlides = slides.length;
+        const autoplayInterval = 5000;
+
+        function goToSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+            document.querySelectorAll('.slider-dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+            currentSlide = index;
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            goToSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            goToSlide(currentSlide);
+        }
+
+        // Auto-play slider
+        setInterval(nextSlide, autoplayInterval);
+
+        function toggleMenu() {
+            // Mobile menu toggle can be added here
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/254740821169" class="floating-whatsapp" target="_blank" rel="noopener noreferrer" title="Chat with us on WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.272-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004c-1.052 0-2.069.338-2.955.967l-.21.13-2.143-.561.569 2.08-.135.214a4.888 4.888 0 0 0-.9 2.605c0 2.364 1.927 4.29 4.291 4.29h.004c1.052 0 2.069-.337 2.955-.967l.21-.129 2.143.561-.569-2.081.135-.213a4.884 4.884 0 0 0 .9-2.605c0-2.364-1.927-4.291-4.291-4.291M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0z"/>
+        </svg>
+    </a>
+    <style>
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 3.5rem;
+            height: 3.5rem;
+            background-color: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 999;
+            transition: all 0.3s ease;
+        }
+        .floating-whatsapp:hover {
+            background-color: #1EA854;
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+        @media (max-width: 768px) {
+            .floating-whatsapp {
+                width: 3rem;
+                height: 3rem;
+                bottom: 1.5rem;
+                right: 1.5rem;
+            }
+        }
+    </style>
+    <!-- Coming soon toast + handler -->
+    <style>
+        .coming-soon-toast{position:fixed;bottom:2.5rem;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.85);color:#fff;padding:0.6rem 1rem;border-radius:0.5rem;z-index:10000;display:none;font-weight:600}
+        .coming-soon-toast.show{display:block;animation:fadeup .28s ease}
+        @keyframes fadeup{from{opacity:0;transform:translate(-50%,6px)}to{opacity:1;transform:translate(-50%,0)}}
+    </style>
+    <script>
+        (function(){
+            function showToast(){
+                var t=document.getElementById('comingSoonToast');
+                if(!t){t=document.createElement('div');t.id='comingSoonToast';t.className='coming-soon-toast';t.textContent='Coming soon';document.body.appendChild(t)}
+                t.classList.add('show');clearTimeout(t._timeout);t._timeout=setTimeout(function(){t.classList.remove('show')},1800);
+            }
+            function handler(e){e.preventDefault();showToast();}
+            document.addEventListener('DOMContentLoaded',function(){
+                var sel=['a[href="#donate"]','a[href="index.html#donate"]','button.btn-cta','a.btn-outline[href$="#donate"]'];
+                document.querySelectorAll(sel.join(',')).forEach(function(el){el.addEventListener('click',handler)});
+            });
+        })();
+    </script>
+</body>
+</html>

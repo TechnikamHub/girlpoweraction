@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Girl Power Action Initiative</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #b226ca;
+            --secondary-color: #4205e2;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-light: #f9fafb;
+            --bg-white: #ffffff;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: var(--bg-white);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        main { flex: 1; }
+
+        .footer-brand h3 {
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 0.5rem !important;
+        }
+        .footer-brand > * {
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        .footer-logo {
+            width: 1.5rem;
+            height: 1.5rem;
+            vertical-align: middle;
+            margin-right: 0;
+            border-radius: 50%;
+        }
+
+        .container-custom {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        @media (min-width: 1280px) {
+            .container-custom {
+                padding: 0 3rem;
+            }
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: #ffffff;
+            box-shadow: var(--shadow-sm);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            width: 100%;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-left: 0;
+        }
+
+        .logo img {
+            width: 4rem;
+            height: 4rem;
+            border-radius: 50%;
+            object-fit: contain;
+        }
+
+        .logo h1 {
+            font-size: 1.125rem;
+            display: none;
+        }
+
+        @media (min-width: 640px) {
+            .logo h1 {
+                display: block;
+            }
+        }
+
+        nav.desktop-nav {
+            display: none;
+            gap: 2rem;
+            align-items: center;
+            margin-left: auto;
+        }
+
+        @media (min-width: 768px) {
+            nav.desktop-nav {
+                display: flex;
+            }
+        }
+
+        nav.desktop-nav a {
+            font-weight: 500;
+            text-decoration: none;
+            color: var(--text-light);
+            transition: color 0.3s;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 0.25rem;
+        }
+
+        nav.desktop-nav a:hover {
+            color: var(--primary-color);
+        }
+
+        nav.desktop-nav a.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+
+        .btn-donate {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-donate:hover {
+            background-color: #9e1fb5;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-dark);
+        }
+
+        @media (max-width: 767px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+
+        /* Gallery Masonry layout */
+        .gallery-grid {
+            column-count: 3;
+            column-gap: 20px;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 1024px) {
+            .gallery-grid {
+                column-count: 2;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .gallery-grid {
+                column-count: 1;
+            }
+        }
+
+        .gallery-grid .gallery-item {
+            display: inline-block;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .gallery-grid img {
+            width: 100%;
+            display: block;
+            border-radius: 0.5rem;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.3s;
+        }
+
+        .gallery-grid img:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-grid .caption {
+            margin-top: 0.5rem;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #111827;
+            color: #eef2ff;
+            padding: 3rem 0 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            align-items: start;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 767px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-quicklinks ul {
+                column-count: 1;
+            }
+        }
+
+        .footer-section h3 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: #ffffff;
+        }
+
+        .footer-section p { color: #cbd5e1; margin-bottom: 1rem; }
+
+        .footer-about p { max-width: 28rem; }
+
+        .footer-section ul { list-style: none; padding: 0; margin: 0; }
+
+        .footer-section li { margin-bottom: 0.5rem; }
+
+        .footer-section a { color: #cbd5e1; text-decoration: none; transition: color 0.18s; }
+
+        .footer-section a:hover { color: var(--primary-color); }
+
+        .footer-about { text-align: center; }
+        .footer-quicklinks { text-align: left; }
+        .footer-quicklinks ul {
+            display: inline-block;
+            padding: 0;
+            margin: 0 auto;
+            text-align: left;
+            column-count: 3;
+            column-gap: 1.5rem;
+        }
+        .footer-quicklinks li { margin-bottom: 0.5rem; }
+
+        .footer-about .social-links { display:flex; gap:0.5rem; margin-top:0.5rem; }
+        .footer-about .social-links a { display:inline-flex; align-items:center; justify-content:center; width:2.5rem; height:2.5rem; background: rgba(255,255,255,0.04); border-radius:8px; color: #fff; }
+
+        .footer-bottom {
+            border-top: 1px solid #374151;
+            padding-top: 1.5rem;
+            text-align: center;
+            color: #9ca3af;
+            font-size: 0.875rem;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container-custom">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <img src="images/gpai.png" alt="Girl Power Action Initiative Logo">
+                    <h1>GPAI</h1>
+                </a>
+                <nav class="desktop-nav">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About Us</a>
+                    <a href="programs.html">Programs</a>
+                    <a href="impact.html">Impact</a>
+                    <a href="gallery.html" class="active">Gallery</a>
+                    <a href="team.html">Team</a>
+                    <a href="contact.html">Contact</a>
+                </nav>
+                <a href="#donate" class="btn-donate" style="margin-left: 2rem; text-decoration: none;">Donate Now</a>
+                <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <main style="padding-top:5rem;">
+        <!-- Hero Banner -->
+        <div class="hero-banner" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/img-4.jpg');">
+            <div class="content">
+                <h1>Gallery</h1>
+                <p>A glimpse of our programs and activities with refugee girls.</p>
+            </div>
+        </div>
+
+        <!-- Gallery Section -->
+        <section class="bg-white">
+            <div class="container-custom">
+                <h2>Photo Gallery</h2>
+                <div class="section-divider"></div>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <a href="ui/WhatsApp Image 2024-11-08 at 13.18.57_cf050b53.jpg.jpeg" target="_blank">
+                            <img src="ui/WhatsApp Image 2024-11-08 at 13.18.57_cf050b53.jpg.jpeg" alt="Girls engaged in a workshop November 2024">
+                        </a>
+                        <p class="caption">Workshop session – learning life skills during November 2024 outreach.</p>
+                    </div>
+                    <div class="gallery-item">
+                        <a href="ui/WhatsApp Image 2024-09-25 at 17.56.42_faf7bdef.jpg.jpeg" target="_blank">
+                            <img src="ui/WhatsApp Image 2024-09-25 at 17.56.42_faf7bdef.jpg.jpeg" alt="Mentorship circle">
+                        </a>
+                        <p class="caption">Mentorship program activity with participants.</p>
+                    </div>
+                    <div class="gallery-item">
+                        <a href="ui/WhatsApp Image 2024-09-25 at 17.56.40_276531d8.jpg.jpeg" target="_blank">
+                            <img src="ui/WhatsApp Image 2024-09-25 at 17.56.40_276531d8.jpg.jpeg" alt="Health education workshop">
+                        </a>
+                        <p class="caption">Tailoring workshop session with participants.</p>
+                    </div>
+                    <div class="gallery-item">
+                        <a href="ui/PIC4.jpg" target="_blank">
+                            <img src="ui/PIC4.jpg" alt="Group photo from community event">
+                        </a>
+                        <p class="caption">Group photo from a community outreach event.</p>
+                    </div>
+                    <div class="gallery-item">
+                        <a href="ui/pic3.jpg.jpeg" target="_blank">
+                            <img src="ui/pic3.jpg.jpeg" alt="Participants enjoying activities">
+                        </a>
+                        <p class="caption">Participants engaging in mentorship session.</p>
+                    </div>
+                    <div class="gallery-item">
+                        <a href="ui/PIC10.jpg.jpeg" target="_blank">
+                            <img src="ui/PIC10.jpg.jpeg" alt="Distribution of sanitary supplies">
+                        </a>
+                        <p class="caption">Tailoring Class.</p>
+                    </div>
+                    <div class="gallery-item">
+                        <a href="ui/PIC 3.jpg" target="_blank">
+                            <img src="ui/PIC 3.jpg" alt="Training session snapshot">
+                        </a>
+                        <p class="caption">Snapshot from our girls' football team.</p>
+                    </div>
+                    <div class="gallery-item">
+                        <a href="ui/581680249_18070723424204785_5394316932446186750_n.jpg.jpeg" target="_blank">
+                            <img src="ui/581680249_18070723424204785_5394316932446186750_n.jpg.jpeg" alt="Girls gathering for a program">
+                        </a>
+                        <p class="caption">Community outreach program.</p>
+                    </div>
+                    <div class="gallery-item">
+                        <a href="ui/553798514_18065092157204785_6039979092209169567_n.jpg" target="_blank">
+                            <img src="ui/553798514_18065092157204785_6039979092209169567_n.jpg" alt="Livelihood training event">
+                        </a>
+                        <p class="caption">Debate competition event with participants.</p>
+                    </div>
+                    <div class="gallery-item">
+                        <a href="ui/16 DAYS OF ACTIVISM-9.jpg" target="_blank">
+                            <img src="ui/16 DAYS OF ACTIVISM-9.jpg" alt="16 Days of Activism campaign">
+                        </a>
+                        <p class="caption">16 Days of Activism campaign activities.</p>
+                    </div>
+                    <div class="gallery-item">
+                        <a href="ui/12.jpeg" target="_blank">
+                            <img src="ui/12.jpeg" alt="Smiles from camp outreach">
+                        </a>
+                        <p class="caption">Smiles during a camp outreach program.</p>
+                    </div>
+                    <div class="gallery-item">
+                        <a href="ui/16 DAYS OF ACTIVISM (1).jpg" target="_blank">
+                            <img src="ui/16 DAYS OF ACTIVISM (1).jpg" alt="16 Days of Activism campaign">
+                        </a>
+                        <p class="caption">16 Days of Activism campaign activities.</p>
+                    </div>
+                    <div class="gallery-item">
+                        <a href="ui/16 DAYS OF ACTIVISM-4 - Copy.jpg" target="_blank">
+                            <img src="ui/16 DAYS OF ACTIVISM-4 - Copy.jpg" alt="16 Days of Activism campaign">
+                        </a>
+                        <p class="caption">16 Days of Activism campaign activities.</p>
+                    </div>
+                    <div class="gallery-item">
+                        <a href="ui/16 DAYS OF ACTIVISM-8.jpg" target="_blank">
+                            <img src="ui/16 DAYS OF ACTIVISM-8.jpg" alt="16 Days of Activism campaign">
+                        </a>
+                        <p class="caption">16 Days of Activism campaign activities.</p>
+                    </div>
+                    <div class="gallery-item">
+                        <a href="ui/Sanitary pad distribustion.png" target="_blank">
+                            <img src="ui/Sanitary pad distribustion.png" alt="Sanitary pad distribution">
+                        </a>
+                        <p class="caption">Sanitary pad distribution.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container-custom">
+            <div class="footer-grid">
+                <div class="footer-section footer-about">
+                    <div class="footer-brand">
+                        <img src="images/gpai.png" alt="GPAI logo" class="footer-logo">
+                        <h3>Girl Power Action Initiative</h3>
+                    </div>
+                    <p>Empowering refugee girls in Kaloboyei and Kakuma camps through education, mentorship, and support for a better future.</p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/company/girl-power-initiative/posts/?feedView=all" title="LinkedIn">
+                            <svg fill="currentColor" viewBox="0 0 24 24"><path d="M4.98 3c0 1.657-1.343 3-3 3S-1.02 4.657-1.02 3 0.323 0 1.98 0 4.98 1.343 4.98 3zM0 24h4V8H0v16zm7-16h4v2.351h.056c.556-1.054 1.914-2.166 3.942-2.166 4.214 0 5 2.773 5 6.379V24h-4v-8.125c0-1.939-.035-4.437-2.702-4.437-2.708 0-3.123 2.116-3.123 4.299V24h-4V8z"/></svg>
+                        </a>
+                        <a href="https://www.instagram.com/girl_power_action_initiative" target="_blank" rel="noopener noreferrer" title="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://x.com/girlpowerteam33" target="_blank" rel="noopener noreferrer" title="X (Twitter)">
+                            <i class="fab fa-x-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-section footer-quicklinks">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="programs.html">Programs</a></li>
+                        <li><a href="impact.html">Impact</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="team.html">Team</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="index.html#donate">Donate</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section footer-contact">
+                    <h3>Contact Info</h3>
+                    <div style="display: grid; gap: 1.5rem;">
+                        <div style="display: flex; gap: 1rem; align-items: flex-start;">
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width: 1.5rem; height: 1.5rem; flex-shrink: 0;">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            <span>kakuma 3 zone 3 block 9, Kakuma refugee Camp, Kenya</span>
+                        </div>
+                        <div style="display: flex; gap: 1rem; align-items: flex-start;">
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width: 1.5rem; height: 1.5rem; flex-shrink: 0;">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                            <span>info@girlpoweractioninitiative.org</span>
+                        </div>
+                        <div style="display: flex; gap: 1rem; align-items: flex-start;">
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width: 1.5rem; height: 1.5rem; flex-shrink: 0;">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                            </svg>
+                            <span>+254740821169</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            // future mobile menu functionality
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

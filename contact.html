@@ -98,25 +98,21 @@
             padding: 1rem 0;
         }
 
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-left: 0; /* ensure left alignment inside container */
+        }
+
         .logo img {
             width: 4rem;
             height: 4rem;
             border-radius: 50%;
             object-fit: contain;
-        }
-
-        /* Ensure images within containers are responsive and centered */
-        .container-custom img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-        }
-
-        /* Make buttons easier to tap on mobile */
-        .btn, .btn-donate {
-            padding: 0.75rem 1rem;
-            font-size: 1rem;
         }
 
         .logo h1 {
@@ -129,6 +125,7 @@
                 display: block;
             }
         }
+
 
         nav.desktop-nav {
             display: none;
@@ -488,7 +485,7 @@
 </head>
 <body>
     <!-- Header -->
-    <header>
+  <header>
         <div class="container-custom">
             <div class="header-content">
                 <a href="index.html" class="logo">
@@ -503,9 +500,9 @@
                     <a href="gallery.html">Gallery</a>
                     <a href="team.html">Team</a>
                     <a href="contact.html" class="active">Contact</a>
+                    <button class="btn-donate">Donate</button>
                 </nav>
-                <a href="#donate" class="btn-donate" style="margin-left: 2rem; text-decoration: none;">Donate Now</a>
-                <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
             </div>
         </div>
     </header>
